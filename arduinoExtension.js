@@ -618,8 +618,10 @@
 
 	ext._shutdown = function () {
 		// TODO: Bring all pins down
-		if (device)
+		if (device) {
+			device.set_receive_handler(null);
 			device.close();
+		}
 		if (poller)
 			clearInterval(poller);
 		device = null;
